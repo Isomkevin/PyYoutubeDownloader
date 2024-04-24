@@ -7,13 +7,13 @@ def videoDownload(link: str):
   try:
     youtubeStream_obj.download()
   except Exception as e:
-    print("An error has occurred", e)
+    print("An error has occurred during download", e)
 
 def download_in_progress(stream, chunk, bytes_remaining):
-    total_size = stream.filesize
-    bytes_downloaded = total_size - bytes_remaining
-    percentage_of_completion = bytes_downloaded / total_size * 100
-    print(f'{percentage_of_completion} %')
+  total_size = stream.filesize
+  bytes_downloaded = total_size - bytes_remaining
+  percentage_of_completion = bytes_downloaded / total_size * 100
+  print(f'{percentage_of_completion} %')
 
 def download_complete(a,b):
   result = "Download Completed Successfully"
@@ -32,22 +32,31 @@ def videoInfo(link: str):
 
 def playlistDownload(url: str):
   """
-  This function will not work if Playlist is Private
+  Downloads a Youtube playlist
+  
+  NB:  Will not work if said Playlist is Private
   """
   playlist = Playlist(url)
   for video_url in playlist.video_urls:
     print(video_url)
+    videoDownload(video_url)
 
+def youtubeTranscript():
+  """
+  This function will extract the audio and return a transcript of the audio
+  """
+  pass
 
   
-jomaTech_YT_Video = 'https://www.youtube.com/watch?v=synJZAtH58E'
-freeCodeCamp_YT_Video = 'https://www.youtube.com/watch?v=hmkF77F9TLw'
-longDuration_freeCodeCamp_YT_Video = 'https://www.youtube.com/watch?v=l8Imtec4ReQ'
+jomaTech_YT_Video: str = 'https://www.youtube.com/watch?v=synJZAtH58E'
+freeCodeCamp_YT_Video: str = 'https://www.youtube.com/watch?v=hmkF77F9TLw'
+longDuration_freeCodeCamp_YT_Video: str = 'https://www.youtube.com/watch?v=l8Imtec4ReQ'
 
 YT_playlist1 = "https://www.youtube.com/playlist?list=PL5M74VagS4g9k_o0V8c9gSC0bsBSg2Qlc"
 
-
 # link = input("Enter the YouTube video URL: ")
-videoDownload(longfreeCodeCamp_YT_Video)
+
+
+videoDownload(longDuration_freeCodeCamp_YT_Video)
 # videoInfo(jomaTech_YT_Video)
 # playlistDownload(YT_playlist1)
